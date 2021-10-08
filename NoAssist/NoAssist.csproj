@@ -1,0 +1,79 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>NoAssist</AssemblyName>
+    <Description>Disable Assist mode prompts</Description>
+    <Version>1.0.0</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
+<ItemGroup>
+  <Reference Include="0Harmony">
+    <HintPath>..\BepInEx\core\0Harmony.dll</HintPath>
+  </Reference>
+  <Reference Include="BepInEx.Core">
+    <HintPath>..\BepInEx\core\BepInEx.Core.dll</HintPath>
+  </Reference>
+  <Reference Include="BepInEx.Il2Cpp">
+    <HintPath>..\BepInEx\core\BepInEx.Il2Cpp.dll</HintPath>
+  </Reference>
+  <Reference Include="Mono.Cecil">
+    <HintPath>..\BepInEx\core\Mono.Cecil.dll</HintPath>
+  </Reference>
+  <Reference Include="Mono.Cecil.Mdb">
+    <HintPath>..\BepInEx\core\Mono.Cecil.Mdb.dll</HintPath>
+  </Reference>
+  <Reference Include="Mono.Cecil.Pdb">
+    <HintPath>..\BepInEx\core\Mono.Cecil.Pdb.dll</HintPath>
+  </Reference>
+  <Reference Include="Mono.Cecil.Rocks">
+    <HintPath>..\BepInEx\core\Mono.Cecil.Rocks.dll</HintPath>
+  </Reference>
+</ItemGroup>
+<ItemGroup>
+  <Reference Include="Assembly-CSharp">
+    <HintPath>..\BepInEx\unhollowed\Assembly-CSharp.dll</HintPath>
+  </Reference>
+  <Reference Include="Il2Cppmscorlib">
+    <HintPath>..\BepInEx\unhollowed\Il2Cppmscorlib.dll</HintPath>
+  </Reference>
+  <Reference Include="Il2CppSystem">
+    <HintPath>..\BepInEx\unhollowed\Il2CppSystem.dll</HintPath>
+  </Reference>
+  <Reference Include="Il2CppSystem.Core">
+    <HintPath>..\BepInEx\unhollowed\Il2CppSystem.Core.dll</HintPath>
+  </Reference>
+  <Reference Include="Il2CppSystem.Xml">
+    <HintPath>..\BepInEx\unhollowed\Il2CppSystem.Xml.dll</HintPath>
+  </Reference>
+  <Reference Include="UnhollowerBaseLib">
+    <HintPath>..\BepInEx\unhollowed\UnhollowerBaseLib.dll</HintPath>
+  </Reference>
+  <Reference Include="UnhollowerRuntimeLib">
+    <HintPath>..\BepInEx\unhollowed\UnhollowerRuntimeLib.dll</HintPath>
+  </Reference>
+  <Reference Include="UnityEngine">
+    <HintPath>..\BepInEx\unhollowed\UnityEngine.dll</HintPath>
+  </Reference>
+  <Reference Include="UnityEngine.CoreModule">
+    <HintPath>..\BepInEx\unhollowed\UnityEngine.CoreModule.dll</HintPath>
+  </Reference>
+  <Reference Include="UnityEngine.IMGUIModule">
+    <HintPath>..\BepInEx\unhollowed\UnityEngine.IMGUIModule.dll</HintPath>
+  </Reference>
+  <Reference Include="UnityEngine.UI">
+    <HintPath>..\BepInEx\unhollowed\UnityEngine.UI.dll</HintPath>
+  </Reference>
+  <Reference Include="UnityEngine.UIModule">
+    <HintPath>..\BepInEx\unhollowed\UnityEngine.UIModule.dll</HintPath>
+  </Reference>
+  <Reference Include="UnityEngine.TextRenderingModule">
+    <HintPath>..\BepInEx\unhollowed\UnityEngine.TextRenderingModule.dll</HintPath>
+  </Reference>
+</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="BepInEx.IL2CPP" Version="6.0.0-*" IncludeAssets="compile" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*" />
+  </ItemGroup>
+</Project>
