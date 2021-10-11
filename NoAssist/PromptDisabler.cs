@@ -28,7 +28,7 @@ namespace NoAssist {
 		public PromptDisabler(IntPtr ptr) : base(ptr) {}
 		
 		public void Update() {
-			if (MainGame.mainGameStage.m_IsAssistConfirmed) return;
+			if (MainGame.mainGameStage == null || MainGame.mainGameStage.m_IsAssistConfirmed) return;
 			MainGame.mainGameStage.m_IsAssistConfirmed = true;
 		}
 	}
