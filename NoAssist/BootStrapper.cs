@@ -29,7 +29,6 @@ namespace NoAssist {
 		[HarmonyPostfix]
 		public static void Update() {
 			// Create Game Objects here (note: this will run every frame)
-			Plugin.log.LogMessage("Bootstrapping NoAssist...");
 			if (promptDisabler == null) {
 				try {
 					promptDisabler = PromptDisabler.Create("PromptDisablerGO");
