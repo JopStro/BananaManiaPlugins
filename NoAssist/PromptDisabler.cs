@@ -28,9 +28,8 @@ namespace NoAssist {
 		public PromptDisabler(IntPtr ptr) : base(ptr) {}
 		
 		public void Update() {
-			var stage = Object.FindObjectOfType<MainGameStage>();
-			if (stage == null || stage.m_IsAssistConfirmed) return;
-			stage.m_IsAssistConfirmed = true;
+			if (MainGame.mainGameStage.m_IsAssistConfirmed) return;
+			MainGame.mainGameStage.m_IsAssistConfirmed = true;
 		}
 	}
 }
