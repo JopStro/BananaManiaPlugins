@@ -20,32 +20,13 @@ namespace NoAssist
 	
         public override void Load()
         {
-            // Plugin startup logic
-            Log.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
-
-	    try {
-		    ClassInjector.RegisterTypeInIl2Cpp<BootStrapper>();
-		    ClassInjector.RegisterTypeInIl2Cpp<PromptDisabler>();
-	    }
-	    catch
-            {
-                log.LogError("FAILED to Register Il2Cpp Type!");
-            }
-	    try {
-		    var harmony = new Harmony("jostro.noassist.il2cpp");
-
-		    //Update
-		    var originalUpdate = AccessTools.Method(typeof(Sound), "Update");
-		    log.LogMessage("Harmony - Original Method: " + originalUpdate.DeclaringType.Name + "." + originalUpdate.Name);
-		    var postUpdate = AccessTools.Method(typeof(BootStrapper), "Update");
-		    log.LogMessage("Harmony - Postfix Method: " + postUpdate.DeclaringType.Name + "." + postUpdate.Name);
-		    harmony.Patch(originalUpdate, postfix: new HarmonyMethod(postUpdate));
-		    log.LogMessage("Harmony - Runtime Patch's Applied");
-	    }
-	    catch {
-		    log.LogError("Harmony - FAILED to Apply Patch's!");
-	    }
-	    BootStrapper.Create("BootStrapperGO");
+		Harmony.CreateAndPatchAll(typeof(Patch));
         }
+    }
+    [HarmonyPatch(typeof(MainGameStage), "Initialize")]
+    class Patch {
+	    static void Postfix(ref MainGameStage __instance) {
+		    __instance.m_IsAssistConfirmed = true;
+	    }
     }
 }
