@@ -5,6 +5,7 @@ using UnhollowerRuntimeLib;
 using HarmonyLib;
 using UnityEngine;
 using Flash2;
+using BepInEx.Configuration;
 using Object = UnityEngine.Object;
 
 namespace SkipBootLogos
@@ -13,6 +14,7 @@ namespace SkipBootLogos
     [BepInProcess("smbbm.exe")]
     public class Plugin : BasePlugin
     {
+	public static ConfigEntry<bool> configSkipTitle;
 	public static BepInEx.Logging.ManualLogSource log;
 	public Plugin() {
 		log = Log;
@@ -20,15 +22,17 @@ namespace SkipBootLogos
 	
         public override void Load()
         {
-		Harmony.CreateAndPatchAll(typeof(BootMenuPatch));
+		configSkipTitle = Config.Bind("General", "SkipTitle", false, "Skip the title screen as well");
+		Harmony.CreateAndPatchAll(typeof(Patch));
         }
     }
 
     [HarmonyPatch(typeof(SelDisplayLogoSequence), "onStart")]
-    class BootMenuPatch {
-	static bool Prefix() {
-		AppScene.Add(AppScene.eID.Title);
-		AppScene.SetActive(AppScene.eID.Title);
+    class Patch {
+	[HarmonyPrefix]
+	static bool SkipLogos() {
+		var newScene = Plugin.configSkipTitle.Value ? AppScene.eID.MainMenu : AppScene.eID.Title;
+		AppScene.Change(newScene);
 		return false;
 	}
     }
